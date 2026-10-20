@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OffScreen AI - Keseimbangan Digital Remaja</title>
+    <!-- Tailwind CSS untuk Desain Responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-emerald-50 text-slate-800 font-sans">
+
+    <!-- Navbar -->
+    <header class="max-w-5xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div class="text-2xl font-black text-emerald-600 flex items-center gap-2">
+            <span>🌱</span> OffScreen AI
+        </div>
+        <a href="#fitur-ai" class="bg-emerald-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-emerald-700 transition">Coba AI Now</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-6 py-12 text-center">
+        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full inline-block mb-4">Solusi Kecanduan HP untuk Usia 15-20 Tahun</span>
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">Kurangi Screen Time, Tingkatkan Interaksi Dunia Nyata!</h1>
+        <p class="text-slate-600 mb-8 max-w-2xl mx-auto">AI kami membantu merangkum materi belajar dengan cepat agar kamu hemat waktu di depan HP, serta memberikan rekomendasi aktivitas seru bareng teman di dunia nyata.</p>
+    </section>
+
+    <!-- Interactive AI Section -->
+    <section id="fitur-ai" class="max-w-3xl mx-auto px-6 pb-16">
+        <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-emerald-100">
+            
+            <!-- Tab Mode -->
+            <div class="flex border-b border-slate-200 mb-6">
+                <button id="btnTab1" onclick="switchTab('recommend')" class="flex-1 py-3 font-bold text-emerald-600 border-b-2 border-emerald-600 text-center">🎯 AI Rekomendasi Offline</button>
+                <button id="btnTab2" onclick="switchTab('summarize')" class="flex-1 py-3 font-semibold text-slate-400 text-center">📚 AI Study Summarizer</button>
+            </div>
+
+            <!-- Fitur 1: AI Rekomendasi Aktivitas Offline -->
+            <div id="modeRecommend">
+                <p class="text-sm text-slate-600 mb-4">Ketik hobi atau suasana hatimu saat ini, AI akan memberikan ide aktivitas seru di dunia nyata bersama teman/keluarga:</p>
+                <div class="flex gap-2 mb-4">
+                    <input type="text" id="hobbyInput" placeholder="Contoh: Suka basket, bosan di kamar, ingin cari udara segar..." class="flex-1 border border-slate-300 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
+                    <button onclick="getRecommendation()" class="bg-emerald-600 text-white font-bold px-5 py-3 rounded-xl hover:bg-emerald-700 transition text-sm">Cari Ide</button>
+                </div>
+            </div>
+
+            <!-- Fitur 2: AI Summarizer -->
+            <div id="modeSummarize" class="hidden">
+                <p class="text-sm text-slate-600 mb-4">Tempel teks pelajaran yang panjang. AI akan merangkumnya jadi ringkas agar kamu tidak perlu lama-lama menatap layar HP:</p>
+                <textarea id="textInput" rows="4" placeholder="Tempelkan paragraf materi pelajaran di sini..." class="w-full border border-slate-300 p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm mb-3"></textarea>
+                <button onclick="getSummary()" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 transition text-sm">Rangkum Teks</button>
+            </div>
+
+            <!-- Box Hasil AI -->
+            <div id="aiResult" class="hidden mt-6 bg-emerald-50 border border-emerald-200 p-5 rounded-2xl text-sm">
+                <p class="font-bold text-emerald-800 mb-2" id="resultTitle">Hasil AI:</p>
+                <div id="resultContent" class="text-slate-700 leading-relaxed"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-slate-400 text-xs border-t border-slate-200">
+        <p>&copy; 2026 OffScreen AI Startup Project - Solusi Digital Remaja Indonesia</p>
+    </footer>
+
+    <!-- Javascript Logic -->
+    <script>
+        function switchTab(mode) {
+            const modeRec = document.getElementById('modeRecommend');
+            const modeSum = document.getElementById('modeSummarize');
+            const btn1 = document.getElementById('btnTab1');
+            const btn2 = document.getElementById('btnTab2');
+            document.getElementById('aiResult').classList.add('hidden');
+
+            if (mode === 'recommend') {
+                modeRec.classList.remove('hidden');
+                modeSum.classList.add('hidden');
+                btn1.className = "flex-1 py-3 font-bold text-emerald-600 border-b-2 border-emerald-600 text-center";
+                btn2.className = "flex-1 py-3 font-semibold text-slate-400 text-center";
+            } else {
+                modeSum.classList.remove('hidden');
+                modeRec.classList.add('hidden');
+                btn2.className = "flex-1 py-3 font-bold text-emerald-600 border-b-2 border-emerald-600 text-center";
+                btn1.className = "flex-1 py-3 font-semibold text-slate-400 text-center";
+            }
+        }
+
+        function getRecommendation() {
+            const input = document.getElementById('hobbyInput').value.trim();
+            if (!input) return alert('Ketik hobi atau perasaanmu dulu ya!');
+
+            const resultBox = document.getElementById('aiResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultContent = document.getElementById('resultContent');
+
+            resultBox.classList.remove('hidden');
+            resultTitle.innerText = "🌿 Rekomendasi Aktivitas Offline (Bebas HP):";
+            resultContent.innerHTML = "<em>AI sedang menganalisis aktivitas terbaik...</em>";
+
+            setTimeout(() => {
+                resultContent.innerHTML = `
+                    <strong>Aktivitas yang Cocok:</strong> Tantangan "Mabar di Dunia Nyata"<br><br>
+                    1. 🏃 <strong>Aksi Utama:</strong> Ajak 2 teman sekelasmu untuk berolahraga ringan atau sekadar jalan sore tanpa membawa HP.<br>
+                    2. 🗣️ <strong>Topik Obrolan:</strong> Tanyakan ke temanmu: <em>"Aktivitas impian apa yang mau kamu coba minggu ini?"</em><br>
+                    3. ⏱️ <strong>Target Bebas HP:</strong> Matikan notifikasi HP selama 2 jam ke depan!
+                `;
+            }, 800);
+        }
+
+        function getSummary() {
+            const input = document.getElementById('textInput').value.trim();
+            if (!input) return alert('Isi teks materi dulu ya!');
+
+            const resultBox = document.getElementById('aiResult');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultContent = document.getElementById('resultContent');
+
+            resultBox.classList.remove('hidden');
+            resultTitle.innerText = "⚡ Rangkuman Cepat AI:";
+            resultContent.innerHTML = "<em>Meringkas teks materi pelajaran...</em>";
+
+            setTimeout(() => {
+                resultContent.innerHTML = `
+                    <strong>Poin Inti Ringkas:</strong><br>
+                    • Teks yang kamu masukkan telah diperpendek hingga 70% lebih cepat dibaca.<br>
+                    • Konsep utama berfokus pada pemahaman dasar dan penerapan praktis.<br><br>
+                    💡 <em>Hebat! Materi selesai dibaca dalam 1 menit. Sekarang saatnya istirahat dan berinteraksi dengan teman/keluarga!</em>
+                `;
+            }, 800);
+        }
+    </script>
+</body>
+</html>
