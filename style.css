@@ -1,24 +1,23 @@
+/* Pengaturan tampilan untuk seluruh latar belakang halaman web */
 body {
-background-color:#00004c; /* warna biru*/
-font-family: Arial, sans-serif; /*jenis huruf yang mudah dibaca*/
-color: #6a5acd; /*warna text utama (hitam)*/
+    background-color: #00004c; /* Warna latar belakang biru */
+    font-family: Arial, sans-serif; /* Jenis huruf yang mudah dibaca */
+    color: #6a5acd; /* Warna teks utama */
 }
 
+/* Pengaturan tampilan untuk kotak kartu profil */
 .kartu-profil {
-  width: 300px;
-  margin: 50px auto; /*50 px jarak atas/bawah, auto menengahkan kiri/kanan*/
-  padding: 20px;
-  background-color: white;
-  border-radius: 15px; /*membuat sudut menjadi melengkung*/
-  box-shadow: 0 4px 8px rgba(o,0,0,0,1); /*efek bayangan*/
+    width: 300px; /* Lebar kotak kartu */
+    margin: 50px auto; /* 50px jarak atas/bawah, auto untuk menengahkan kiri/kanan */
+    padding: 20px; /* Ruang di dalam kotak */
+    background-color: white; /* Warna latar belakang kartu menjadi putih */
+    border-radius: 15px; /* Membuat sudut kotak menjadi melengkung */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan di bawah kartu */
+    text-align: center; /* Menengahkan seluruh teks dan gambar di dalam kartu */
 }
-|
 
+/* Pengaturan khusus untuk gambar foto profil di dalam kartu */
 .kartu-profil img {
-  width: 150px;
-  border-radius: 50px; /*trik untuk membuat persegi nenjadi lingkaan sempurna*/
-}
-.kartu-profil {
-  /* ... (kode dari slide sebelumnya) ...*/
-  text-align: center; /*menengahkan semua teks di dalam kartu*/
+    width: 150px; /* Lebar gambar */
+    border-radius: 50%; /* Trik untuk membuat foto persegi menjadi lingkaran sempurna */
 }
